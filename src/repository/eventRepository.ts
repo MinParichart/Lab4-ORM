@@ -1,6 +1,6 @@
 import type { Event } from '../models/event';
 
-const events : Event [] = [
+export const events : Event [] = [
   {
     id          : 1,
     category    : "Music",
