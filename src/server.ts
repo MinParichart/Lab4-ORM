@@ -1,14 +1,36 @@
 import express, { Request, Response } from 'express';
+import multer from 'multer';
 import type { Event } from './models/event.ts';
 import {
   addEvent, getAllEvents,
   getEventByCategory,
   getEventById
 } from './service/eventService';
+import { uploadFile } from './service/uploadFileService';
 
 const app = express()
 const port = 3000
 app.use(express.json())
+
+const upload = multer({ storage: multer.memoryStorage() });
+ 
+app.post('/upload', upload.single('file'), async (req: any, res: any) => {
+  try {
+    const file = req.file;
+    if (!file) {
+      return res.status(400).send('No file uploaded.');
+    }
+
+    const bucket = 'image';
+    const filePath = `uploads_event/${file.originalname}`;
+ 
+    await uploadFile(bucket, filePath, file);
+
+    res.status(200).send('File uploaded successfully.');
+  } catch (error) {
+    res.status(500).send('Error uploading file.');
+  }
+});
 
 
 app.get('/', async (req : Request, res : Response) => { 
