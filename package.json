@@ -7,7 +7,8 @@
     "start": "node dist/index.ts",
     "build": "tsc",
     "indexdev": "ts-node src/index.ts",
-    "dev": "ts-node src/server.ts"
+    "dev": "ts-node src/server.ts",
+    "seed": "ts-node src/seed.ts"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,8 @@
   "description": "",
   "dependencies": {
     "@aws-sdk/client-s3": "^3.750.0",
+    "@prisma/client": "^6.4.1",
+    "@prisma/extension-accelerate": "^1.2.2",
     "@types/multer": "^1.4.12",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
@@ -32,6 +35,8 @@
   },
   "devDependencies": {
     "@types/express": "^5.0.0",
-    "ts-node": "^10.9.2"
+    "prisma": "^6.4.1",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.19.3"
   }
 }
