@@ -1,26 +1,14 @@
 import express, { Request, Response } from 'express';
+import {
+  addEvent, Event, getAllEvents,
+  getEventBycategory,
+  getEventById
+} from './service/eventService';
+
 const app = express()
 const port = 3000
 app.use(express.json())
 
-function getEventBycategory(category : string) : Event[] { 
-  const filterdEvents = events.filter((event) => event.category === category);
-  return filterdEvents; 
-}
-
-function getAllEvents() : Event[] { 
-  return events; 
-}
-
-function getEventById(id : number) : Event | undefined { 
-  return events.find((event) => event.id === id); 
-}
-
-function addEvent(newEvent : Event) : Event { 
-  newEvent.id = events.length + 1; 
-  events.push(newEvent); 
-  return newEvent; 
-}
 
 app.get('/', (req : Request, res : Response) => { 
   res.send('Hello World')
@@ -59,87 +47,4 @@ app.post("/events", (req, res) => {
 app.listen(port, () => { 
   console.log((`App listening at http://localhost:${port}`))
 })
-
-// สร้าง type ของ object ที่จะใช้
-interface Event { 
-  id          : number; 
-  category    : string; 
-  title       : string; 
-  description : string; 
-  location    : string; 
-  date        : string;  
-  time        : string; 
-  petsAllowed : boolean; 
-  organizer   : string; 
-}
-
-// สร้าง ตัวแปร events เพื่อเก็บข้อมูล list ของ event
-const events : Event [] = [
-  {
-    id          : 1,
-    category    : "Music",
-    title       : "Concert",
-    description : "A live concert",
-    location    : "London",
-    date        : "2021-07-01",
-    time        : "19:00",
-    petsAllowed : false,
-    organizer   : "Live Nation",
-  },
-  {
-    id: 2,
-    category    : "Music",
-    title       : "Festival",
-    description : "A music festival",
-    location    : "Manchester",
-    date        : "2021-07-15",
-    time        : "12:00",
-    petsAllowed : true,
-    organizer   : "Festival Republic",
-  },
-  {
-    id          : 3,
-    category    : "Music",
-    title       : "Gig",
-    description : "A gig",
-    location    : "Birmingham",
-    date        : "2021-07-30",
-    time        : "20:00",
-    petsAllowed : true,
-    organizer   : "Academy Music Group",
-  },
-  {
-    id          : 4,
-    category    : "Sports",
-    title       : "Football Match",
-    description : "A live football match",
-    location    : "London",
-    date        : "2021-07-01",
-    time        : "19:00",
-    petsAllowed : false,
-    organizer   : "Premier League",
-  },
-  {
-    id: 5,
-    category    : "Music",
-    title       : "Festival",
-    description : "A music festival",
-    location    : "Manchester",
-    date        : "2021-07-15",
-    time        : "12:00",
-    petsAllowed : true,
-    organizer   : "Festival Republic",
-  },
-  {
-    id          : 6,
-    category    : "Music",
-    title       : "Gig",
-    description : "A gig",
-    location    : "Birmingham",
-    date        : "2021-07-30",
-    time        : "20:00",
-    petsAllowed : true,
-    organizer   : "Academy Music Group",
-  },
-]
 
