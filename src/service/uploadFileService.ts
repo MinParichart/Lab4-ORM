@@ -1,17 +1,27 @@
 import { PutObjectCommand } from "@aws-sdk/client-s3";
+import { randomBytes } from 'crypto';
 import { s3Client } from '../awsConfig';
 
+function generateSaltedFilename(originalName: string): string {
+  const salt = randomBytes(16).toString('hex');
+  const extension = originalName.split('.').pop();
+  return `${salt}.${extension}`;
+}
+  
+
 export async function uploadFile(bucket: string, filePath: string, file: Express.Multer.File): Promise<string> {
+    const saltedFilename = generateSaltedFilename(file.originalname);
+    const saltedFilePath = `${filePath}/${saltedFilename}`;
     const params = {
       Bucket: bucket,
-      Key: filePath,
+      Key: saltedFilePath,
       Body: file.buffer,
       ContentType: file.mimetype
     };
   
     try {
       const data = await s3Client.send(new PutObjectCommand(params));
-      const publicUrl = `https://kdkwuxvoydubcwehmxfy.supabase.co/storage/v1/object/public/image/${filePath}`;
+      const publicUrl = `https://kdkwuxvoydubcwehmxfy.supabase.co/storage/v1/object/public/image/${saltedFilePath}`;
       console.log('File uploaded successfully:', publicUrl);
       return publicUrl;
          } catch (error) {
