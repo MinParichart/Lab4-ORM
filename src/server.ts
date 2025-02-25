@@ -1,7 +1,8 @@
 import express, { Request, Response } from 'express';
+import type { Event } from './models/event.ts';
 import {
-  addEvent, Event, getAllEvents,
-  getEventBycategory,
+  addEvent, getAllEvents,
+  getEventByCategory,
   getEventById
 } from './service/eventService';
 
@@ -19,7 +20,7 @@ app.get('/', async (req : Request, res : Response) => {
 app.get("/events", async (req, res) => {
   if (req.query.category) {
   const category = req.query.category;
-  const filteredEvents = await getEventBycategory(category as string);
+  const filteredEvents = await getEventByCategory(category as string);
   res.json(filteredEvents);
   } else {
   res.json(await getAllEvents());
