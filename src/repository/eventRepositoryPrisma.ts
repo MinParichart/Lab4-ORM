@@ -30,8 +30,13 @@ export function addEvent(newEvent: Event) {
             date: newEvent.date || '',
             time: newEvent.time || '',
             petsAllowed: newEvent.petsAllowed || false, 
-            organizer : newEvent.organizer // ห้ามลืมใส่ organizer ต้องมีค่าครบ 
         }
     });
 }
+
+export function getAllEventsWithOrganizer(){
+      return prisma.event.findMany({
+        include: { organizer: true },
+      });
+    }
 
