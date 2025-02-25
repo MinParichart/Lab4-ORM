@@ -7,7 +7,7 @@ export function getEventByCategory(category: string){
   return repo.getEventByCategory(category);
 }
 
-export function getAllEvents(): Promise<Event[]>{
+export function getAllEvents(){
   return repo.getAllEvents();
 }
 

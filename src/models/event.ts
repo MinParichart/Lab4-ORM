@@ -1,4 +1,5 @@
 // สร้าง type ของ object ที่จะใช้
+import { Organizer } from './organizer';
 export interface Event { 
   id          : number; 
   category    : string; 
@@ -8,5 +9,5 @@ export interface Event {
   date        : string;  
   time        : string; 
   petsAllowed : boolean; 
-  organizer   : string; 
+  organizer   : Organizer; 
 }
