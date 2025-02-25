@@ -10,26 +10,26 @@ const port = 3000
 app.use(express.json())
 
 
-app.get('/', (req : Request, res : Response) => { 
-  res.send('Hello World')
+app.get('/', async (req : Request, res : Response) => { 
+  res.send(await 'Hello World')
 })
 
 // แสดง events ทั้งหมด // localhost:3000/events
 // แสดง events โดยแยก category // localhost:3000/events?category=Sports
-app.get("/events", (req, res) => {
+app.get("/events", async (req, res) => {
   if (req.query.category) {
   const category = req.query.category;
-  const filteredEvents = getEventBycategory(category as string);
+  const filteredEvents = await getEventBycategory(category as string);
   res.json(filteredEvents);
   } else {
-  res.json(getAllEvents());
+  res.json(await getAllEvents());
   }
 });
 
 // แสดง events ตาม id ที่เราส่งไป // localhost:3000/5
-app.get("/events/:id", (req, res) => {
+app.get("/events/:id", async (req, res) => {
   const id = parseInt(req.params.id);
-  const event = getEventById(id)
+  const event = await getEventById(id)
   if (event) {
   res.json((event)); // ก็คือ เอา id ที่ส่งไป มาเก็บไว้ใน ตัวแปร event แล้วส่งไฟล์ json ของ event ที่ id = 5
   } else {
@@ -38,9 +38,9 @@ app.get("/events/:id", (req, res) => {
 }); 
 
 // เพิ่มข้อมูล events โดย meothod POST // localhost:3000
-app.post("/events", (req, res) => {
+app.post("/events", async (req, res) => {
   const newEvent : Event = req.body;
-  addEvent(newEvent);
+  await addEvent(newEvent);
   res.json(newEvent);
 });
 
