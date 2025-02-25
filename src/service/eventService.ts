@@ -1,7 +1,7 @@
 // สร้าง type ของ object ที่จะใช้ แต่ว่าเรา ย้าย type ไปไว้ที่ eventService.ts เราก็ต้อง import เข้ามา 
-import type { Event } from '../models/event.ts';
+import type { Event } from '../models/event';
 
-import * as repo from '../repository/eventRepository.js';
+import * as repo from '../repository/eventRepositoryDb';
 
 export function getEventByCategory(category: string): Promise<Event[]> {
   return repo.getEventByCategory(category);
