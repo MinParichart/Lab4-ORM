@@ -40,6 +40,7 @@ app.get("/events", (req, res) => {
   }
 });
 
+// แสดง events ตาม id ที่เราส่งไป // localhost:3000/5
 app.get("/events/:id", (req, res) => {
   const id = parseInt(req.params.id);
   const event = events.find((event) => event.id === id);
@@ -50,6 +51,7 @@ app.get("/events/:id", (req, res) => {
   }
 }); 
 
+// เพิ่มข้อมูล events โดย meothod POST // localhost:3000
 app.post("/events", (req, res) => {
   const newEvent : Event = req.body;
   newEvent.id = events.length + 1;
