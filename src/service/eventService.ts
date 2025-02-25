@@ -4,11 +4,12 @@ import type { Event } from '../models/event.ts';
 import {
   addEvent as addNewEvent,
   getAllEvents as allEvents,
+  getEventByCategory as eventByCategory,
   getEventById as eventById
 } from '../repository/eventRepository.js';
 
 export function getEventByCategory(category: string): Promise<Event[]> {
-  return getEventByCategory(category);
+  return eventByCategory(category);
 }
 
 export function getAllEvents(): Promise<Event[]> {
