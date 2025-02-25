@@ -7,7 +7,7 @@
     "start": "node dist/index.ts",
     "build": "tsc",
     "indexdev": "ts-node src/index.ts",
-    "dev": "nodemon",
+    "dev": "ts-node src/server.ts && nodemon",
     "seed": "ts-node src/seed.ts"
   },
   "repository": {
