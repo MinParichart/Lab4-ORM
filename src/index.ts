@@ -1,3 +1,9 @@
+import add, { subtract } from './functions';
+const result = add(1,2) + 0;
+const result2 = subtract(1,2) + 0;
+console.log(result, 'type of result:', typeof result);
+console.log(result2, 'type of result2:', typeof result2);
+
 // const add = (a : number ,b : number) => { 
 //   return a + b; 
 // }
@@ -17,19 +23,19 @@
 // console.log(resultxy, 'type of result : ', typeof resultxy); 
 
 
-const findMax = (numbers : number[]) : string => { 
-  if (numbers.length === 0){ 
-    return ''; 
-  }
+// const findMax = (numbers : number[]) : string => { 
+//   if (numbers.length === 0){ 
+//     return ''; 
+//   }
 
-  let max = numbers[0]; 
-  for ( let i = 0 ; i < numbers.length ; i++) { 
-    if ( numbers[i] > max   ) { 
-      max = numbers[i];
-    }
-  }
-  return max.toString(); 
-}
+//   let max = numbers[0]; 
+//   for ( let i = 0 ; i < numbers.length ; i++) { 
+//     if ( numbers[i] > max   ) { 
+//       max = numbers[i];
+//     }
+//   }
+//   return max.toString(); 
+// }
 
-const nums = [3,8,1,2,10,2]; 
-console.log((findMax(nums))); 
+// const nums = [3,8,1,2,10,2]; 
+// console.log((findMax(nums))); 
