@@ -1,7 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 import type { Event } from '../models/event';
 
-
 const prisma = new PrismaClient();
 
 export function getEventByCategory(category: string) {
@@ -50,7 +49,15 @@ export function getAllEventsWithOrganizer(){
                     name : true, 
                 },
             },
-        },
+                participants : { 
+                    select : { 
+                        id : true, 
+                        name : true, 
+                        email : true, 
+                        events : true,
+                    }
+                }
+            },
       });
     }
 
