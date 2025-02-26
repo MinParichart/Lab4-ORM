@@ -12,7 +12,7 @@ export function getAllEvents(){
 }
 
 export function getEventById(id: number){
-  return repo.getEventById(id);
+  return repo.getEventByIdWithOrganizer(id);
 }
 
 export function addEvent(newEvent: Event){

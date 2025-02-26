@@ -40,3 +40,15 @@ export function getAllEventsWithOrganizer(){
       });
     }
 
+export function getEventByIdWithOrganizer(id: number){
+    return prisma.event.findUnique({
+        where : { id },
+        include: { 
+            organizer : { 
+                select : {
+                    name : true,
+                },
+            },
+         },
+    });
+} 
